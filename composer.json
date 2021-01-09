@@ -1,7 +1,7 @@
 {
     "name": "pbd-kn/contao-efg-bundle",
     "type": "contao-bundle",
-    "description": "get Input Variables",
+    "description": "Portierung EFG nach Contao 4",
     "homepage": "https://contao.org",
     "license": "LGPL-3.0-or-later",
     "authors": [
