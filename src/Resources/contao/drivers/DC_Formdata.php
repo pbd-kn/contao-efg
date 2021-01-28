@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\drivers;
 
 
 /**
@@ -27,9 +27,8 @@ namespace PBDKN\Efgco4;
  * @author     Thomas Kuhn <mail@th-kuhn.de>
  * @package    Efg
  */
-class DC_Formdata extends \DataContainer implements \listable, \editable
+class DC_Formdata extends \Contao\DataContainer implements \listable, \editable
 {
-
 	/**
 	 * Name of the parent table
 	 * @param string
@@ -200,6 +199,8 @@ class DC_Formdata extends \DataContainer implements \listable, \editable
 	 */
 	public function __construct($strTable, $arrModule=array())
 	{
+$this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, TL_ERROR);
+
 		parent::__construct();
 
 		// Check the request token (see #4007)
@@ -222,7 +223,7 @@ class DC_Formdata extends \DataContainer implements \listable, \editable
 		}
 
 		$this->loadDataContainer('tl_form_field');
-		$this->import('Formdata');
+		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 
 		// in Backend: Check BE User, Admin...
 		if (TL_MODE == 'BE' || BE_USER_LOGGED_IN)
@@ -6444,3 +6445,6 @@ window.addEvent('domready', function(){
 	}
 
 }
+
+
+

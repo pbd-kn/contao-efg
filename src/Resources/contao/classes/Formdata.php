@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\classes;
 
 /**
  * Class Formdata
@@ -69,7 +69,7 @@ class Formdata extends \Frontend
 	{
 
 		parent::__construct();
-//$this->log("PBD formdata constuct palettes default " . $GLOBALS['TL_DCA']['tl_form']['palettes']['default'], __METHOD__, 'ERROR');
+$this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR');
 		// Types of form fields with storable data
 		$this->arrFFstorable = array
 		(
@@ -3044,3 +3044,4 @@ $this->log("PBD Formdata reloadEfgImportSource nach generate Widget " ,  __METHO
 		}
 	}
 }
+class_alias(Formdata::class, 'Formdata');

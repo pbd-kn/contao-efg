@@ -16,7 +16,7 @@
  * Table tl_form
  */
 
-$GLOBALS['TL_DCA']['tl_form']['config']['onsubmit_callback'][] = array('FormdataBackend', 'createFormdataDca');
+$GLOBALS['TL_DCA']['tl_form']['config']['onsubmit_callback'][] = array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'createFormdataDca');
 
 // fields
 $GLOBALS['TL_DCA']['tl_form']['fields']['storeFormdata'] = array

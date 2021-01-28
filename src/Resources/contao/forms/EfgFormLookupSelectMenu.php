@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\forms;
 
 /**
  * Class EfgFormLookupSelectMenu
@@ -65,7 +65,7 @@ class EfgFormLookupSelectMenu extends \Widget
 				break;
 
 			case 'efgLookupOptions':
-				$this->import('Formdata');
+				$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 				$this->arrConfiguration['efgLookupOptions'] = $varValue;
 				$arrOptions = $this->Formdata->prepareWidgetOptions($this->arrConfiguration);
 				$this->arrOptions = $arrOptions;

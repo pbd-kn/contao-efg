@@ -24,7 +24,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Formdata',
+		'dataContainer'               => 'FormdataPBD',
 		'ctable'                      => array('tl_formdata_details'),
 		'closed'                      => false,
 		'notEditable'                 => false,
@@ -101,7 +101,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['edit'],
 				'href'                => 'act=edit',
-				'button_callback'     => array('FormdataBackend', 'callbackEditButton'),
+				'button_callback'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'callbackEditButton'),
 				'icon'                => 'edit.gif'
 			),
 			'delete' => array

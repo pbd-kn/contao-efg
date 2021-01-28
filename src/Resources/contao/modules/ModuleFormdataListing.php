@@ -15,8 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
-
+PBDKN\Efgco4\Resources\contao\modules
 /**
  * Class ModuleFormdataListing
  *
@@ -192,7 +191,7 @@ class ModuleFormdataListing extends \Module
 		}
 
 		$this->import('FrontendUser', 'Member');
-		$this->import('Formdata');
+		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 
 		$this->arrOwnerFields = array('fd_member', 'fd_user','fd_member_group', 'fd_user_group');
 

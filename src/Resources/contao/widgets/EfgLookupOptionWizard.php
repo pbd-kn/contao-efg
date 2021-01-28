@@ -15,8 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
-
+PBDKN\Efgco4\Resources\contao\widgets
 /**
  * Class EfgLookupOptionWizard
  *

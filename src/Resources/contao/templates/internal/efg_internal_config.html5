@@ -63,7 +63,7 @@ $GLOBALS['BE_MOD']['formdata']['feedback'] = array
 $GLOBALS['BE_MOD']['formdata']['fd_<?php echo $strKey; ?>'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
@@ -89,8 +89,8 @@ array_insert($GLOBALS['FE_MOD']['application'], count($GLOBALS['FE_MOD']['applic
  * -------------------------------------------------------------------------
  */
 
-$GLOBALS['TL_HOOKS']['processFormData'][] = array('FormdataProcessor', 'processSubmittedData');
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('FormdataProcessor', 'processConfirmationContent');
-$GLOBALS['TL_HOOKS']['listComments'][] = array('FormdataComments', 'listComments');
-$GLOBALS['TL_HOOKS']['getSearchablePages'][] = array('Formdata', 'getSearchablePages');
-$GLOBALS['TL_HOOKS']['executePostActions'][] = array('Formdata', 'executePostActions');
+$GLOBALS['TL_HOOKS']['processFormData'][] = array('PBDKN\Efgco4\FormdataProcessor', 'processSubmittedData');
+$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('PBDKN\Efgco4\FormdataProcessor', 'processConfirmationContent');
+$GLOBALS['TL_HOOKS']['listComments'][] = array('PBDKN\Efgco4\FormdataComments', 'listComments');
+$GLOBALS['TL_HOOKS']['getSearchablePages'][] = array('PBDKN\Efgco4\Formdata', 'getSearchablePages');
+$GLOBALS['TL_HOOKS']['executePostActions'][] = array('PBDKN\Efgco4\Formdata', 'executePostActions');

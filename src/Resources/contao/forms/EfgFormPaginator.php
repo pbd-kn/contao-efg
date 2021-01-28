@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\forms;
 
 /**
  * Class EfgFormPaginator

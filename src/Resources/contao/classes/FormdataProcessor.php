@@ -12,14 +12,14 @@
  */
 
 /* PBD 
- * Korrektur zum senden von Mails mittels ontao 4
+ * Korrektur zum senden von Mails mittels Contao 4
  * Das sendmail Komanndo wird aus dm Configfile define(SENDMAILCOMMAND,...)
  * gelesen.
  * ist keine define vorhanden bleibt die Einstellung
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\classes;
 
 /**
  * Class FormdataProcessor
@@ -38,6 +38,8 @@ class FormdataProcessor extends \Frontend
 	public function __construct()  
 	{
     $this->myMailer = \Contao\System::getContainer()->get('swiftmailer.mailer');
+$this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GENERAL);
+
   }
 
 	/**
@@ -60,7 +62,7 @@ class FormdataProcessor extends \Frontend
 		$arrFormFields = array();
 
 		$this->import('FrontendUser', 'Member');
-		$this->import('Formdata');
+		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 
 		$this->strFdDcaKey = 'fd_' . (!empty($arrForm['alias']) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title'])) );
 		$this->Formdata->FdDcaKey = $this->strFdDcaKey;
@@ -736,7 +738,7 @@ class FormdataProcessor extends \Frontend
 				$blnSkipEmptyFields = true;
 			}
 
-			$this->import('Formdata');
+			$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 
 			$arrFormFields = $this->Formdata->getFormfieldsAsArray(intval($arrSubmitted['_formId_']));
 

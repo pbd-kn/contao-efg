@@ -17,9 +17,11 @@
  */
 /*
  * PBD
- * unter contao 4 ist die Neueerstellung des Caches nicht möglich. Muss evtl separat nachgeholt werden
+ * unter contao 4 ist die Neuerstellung des Caches nicht möglich. Muss evtl separat nachgeholt werden
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\classes;
+
+
 
 /**
  * Class FormdataBackend
@@ -51,10 +53,14 @@ class FormdataBackend extends \Backend
 
 	public function __construct()
 	{
+$this->log("PBD FormdataBackend co4 construct vor Parent", __METHOD__, TL_GENERAL);
+
 		parent::__construct();
+$this->log("PBD FormdataBackend co4 construct nach Parent", __METHOD__, TL_GENERAL);
 
 		$this->loadDataContainer('tl_form_field');
-		$this->import('Formdata');
+		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+$this->log("PBD FormdataBackend construct nach import", __METHOD__, TL_GENERAL);
 
 		// Types of form fields with storable data
 		$this->arrFFstorable = $this->Formdata->arrFFstorable;
@@ -184,11 +190,13 @@ $this->log("PBD FormdataBackend updateConfig ", __METHOD__, TL_GENERAL);
 		$tplConfig = $this->newTemplate('efg_internal_config');
 		$tplConfig->arrStoringForms = $arrStoringForms;
 
+/*
 		$objConfig = new \File('system/modules/efg_co4/config/config.php');
 
 		$objConfig->write($tplConfig->parse());   // PBD schreibt den Inhalt  des templates in config.php???
 		$objConfig->close();
-$this->log("efg_co4 rewrite system/modules/efg_co4/config/config.php", __METHOD__, TL_GENERAL);    // PBD
+*/
+$this->log("PBD efg_co4 rewrite so nicht system/modules/efg_co4/config/config.php", __METHOD__, TL_GENERAL);    // PBD
 
 		if (empty($arrStoringForms))
 		{

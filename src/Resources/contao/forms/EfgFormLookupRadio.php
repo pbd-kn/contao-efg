@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\forms;
 
 /**
  * Class EfgFormLookupRadio
@@ -58,7 +58,7 @@ class EfgFormLookupRadio extends \Widget
 		switch ($strKey)
 		{
 			case 'efgLookupOptions':
-				$this->import('Formdata');
+				$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 				$this->arrConfiguration['efgLookupOptions'] = $varValue;
 				$arrOptions = $this->Formdata->prepareWidgetOptions($this->arrConfiguration);
 				$this->arrOptions = $arrOptions;

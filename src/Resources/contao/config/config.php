@@ -26,15 +26,16 @@ define('SENDMAILCOMMAND', ini_get ('sendmail_path') . ' -t');    // set mailtran
 */
 if (TL_MODE == 'BE')
 {
-	$GLOBALS['TL_CSS'][] = 'system/modules/efg_co4/assets/w50_fix.css';
+	$GLOBALS['TL_CSS'][] = 'PBDKN\Efgco4\Resources\contao\assests\w50_fix.css';
 }
 
 
 /**
- * Use class ExtendedForm
+ * Use class ExtendedForm     
+
  */
-$GLOBALS['FE_MOD']['application']['form'] = 'PBDKN\Efgco4\ExtendedForm';
-$GLOBALS['TL_CTE']['includes']['form'] = 'PBDKN\Efgco4\ExtendedForm';
+$GLOBALS['FE_MOD']['application']['form'] = 'PBDKN\Efgco4\Resources\contao\forms\ExtendedForm';
+$GLOBALS['TL_CTE']['includes']['form'] = 'PBDKN\Efgco4\Resources\contao\forms\ExtendedForm';
 
 
 /**
@@ -57,35 +58,35 @@ $GLOBALS['BE_MOD']['formdata']['feedback'] = array
 $GLOBALS['BE_MOD']['formdata']['fd_artikelliste'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
 $GLOBALS['BE_MOD']['formdata']['fd_galerieliste'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
 $GLOBALS['BE_MOD']['formdata']['fd_ausstellungen'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
 $GLOBALS['BE_MOD']['formdata']['fd_presse'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
 $GLOBALS['BE_MOD']['formdata']['fd_popup-artikel'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('FormdataBackend', 'importCsv'),
+	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
 	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
 	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
@@ -99,7 +100,7 @@ $GLOBALS['BE_MOD']['formdata']['fd_popup-artikel'] = array
 
 array_insert($GLOBALS['FE_MOD']['application'], count($GLOBALS['FE_MOD']['application']), array
 (
-	'formdatalisting' => 'ModuleFormdataListing'
+	'formdatalisting' => 'PBDKN\Efgco4\Resources\contao\modules\ModuleFormdataListing'
 ));
 
 
@@ -109,8 +110,8 @@ array_insert($GLOBALS['FE_MOD']['application'], count($GLOBALS['FE_MOD']['applic
  * -------------------------------------------------------------------------
  */
 
-$GLOBALS['TL_HOOKS']['processFormData'][] = array('FormdataProcessor', 'processSubmittedData');
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('FormdataProcessor', 'processConfirmationContent');
-$GLOBALS['TL_HOOKS']['listComments'][] = array('FormdataComments', 'listComments');
-$GLOBALS['TL_HOOKS']['getSearchablePages'][] = array('Formdata', 'getSearchablePages');
-$GLOBALS['TL_HOOKS']['executePostActions'][] = array('Formdata', 'executePostActions');
+$GLOBALS['TL_HOOKS']['processFormData'][] =        array('PBDKN\Efgco4\Resources\contao\classes\FormdataProcessor', 'processSubmittedData');
+$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('PBDKN\Efgco4\Resources\contao\classes\FormdataProcessor', 'processConfirmationContent');
+$GLOBALS['TL_HOOKS']['listComments'][] =           array('PBDKN\Efgco4\Resources\contao\classes\FormdataComments', 'listComments');
+$GLOBALS['TL_HOOKS']['getSearchablePages'][] =     array('PBDKN\Efgco4\Resources\contao\classes\Formdata', 'getSearchablePages');
+$GLOBALS['TL_HOOKS']['executePostActions'][] =     array('PBDKN\Efgco4\Resources\contao\classes\Formdata', 'executePostActions');

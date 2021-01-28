@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace PBDKN\Efgco4;
+namespace PBDKN\Efgco4\Resources\contao\forms;
 
 
 /**
@@ -119,7 +119,7 @@ class ExtendedForm extends \Form
 		{
 			$arrEditRecord = $this->objEditRecord->row();
 			$this->blnEditform = true;
-			$this->import('Formdata');
+			$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
 		}
 
 		// Check if the form is a multipage form
