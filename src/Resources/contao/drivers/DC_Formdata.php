@@ -223,7 +223,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		}
 
 		$this->loadDataContainer('tl_form_field');
-		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+		$this->import('Formdata');
 
 		// in Backend: Check BE User, Admin...
 		if (TL_MODE == 'BE' || BE_USER_LOGGED_IN)

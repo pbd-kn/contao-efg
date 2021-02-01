@@ -11,6 +11,7 @@
  */
 
 class_alias(PBDKN\Efgco4\Resources\contao\drivers\DC_Formdata::class, 'DC_Formdata');
+class_alias(PBDKN\Efgco4\Resources\contao\classes\Formdata::class, 'Formdata');
 
 /**
  * Register the namespaces
@@ -59,7 +60,7 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'efg_internal_config'       => 'system/modules/efg_co4/templates/internal',
+	'efg_internal_config'       => 'PBDKN/Efgco4/Resources/contao/templates/internal',
 	'efg_internal_dca_formdata' => 'system/modules/efg_co4/templates/internal',
 	'efg_internal_modules'      => 'system/modules/efg_co4/templates/internal',
 	'edit_fd_default'           => 'system/modules/efg_co4/templates/forms',

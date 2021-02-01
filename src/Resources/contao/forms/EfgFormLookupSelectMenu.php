@@ -65,7 +65,7 @@ class EfgFormLookupSelectMenu extends \Widget
 				break;
 
 			case 'efgLookupOptions':
-				$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+				$this->import('Formdata');
 				$this->arrConfiguration['efgLookupOptions'] = $varValue;
 				$arrOptions = $this->Formdata->prepareWidgetOptions($this->arrConfiguration);
 				$this->arrOptions = $arrOptions;

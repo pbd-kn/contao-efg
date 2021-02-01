@@ -12,12 +12,12 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2021-02-01 14:39:15 by saving form ""
+// last created on 2021-02-01 14:01:22 by saving form "Mein Formular"
 
 
 
 /**
- * Table tl_formdata defined by form ""
+ * Table tl_formdata defined by form "Mein Formular"
  */
 $GLOBALS['TL_DCA']['tl_formdata'] = array
 (
@@ -26,7 +26,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	(
 		'dataContainer'               => 'Formdata',
 		'ctable'                      => array('tl_formdata_details'),
-		'closed'                      => true,
+		'closed'                      => false,
 		'notEditable'                 => false,
 		'enableVersioning'            => false,
 		'doNotCopyRecords'            => true,
@@ -46,18 +46,39 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		'label' => array
 		(
 			'fields'                  => array('date', 'form', 'alias', 'be_notes' , 'NAME', 'WERT'),
-			/*
 			'format'                  => '<div class="fd_wrap">
-	<div class="fd_head">%s<span>[%s]</span></div>
+	<div class="fd_head">%s<span>[%s]</span><span>%s</span></div>
 		<div class="fd_notes">%s</div>
-	<div class="fd_row field_NAME"><div class="fd_label">name: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_WERT"><div class="fd_label">WERT: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_NAME"><div class="fd_label">name: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_WERT"><div class="fd_label">WERT: </div><div class="fd_value">%s </div></div>
 		</div>',
+			/*
+			'label_callback'          => array('tl_fd_myForm','getRowLabel')
 			*/
-			'label_callback'          => array('tl_fd_feedback','getRowLabel')
 		),
 		'global_operations' => array
 		(
+			'import' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['import'],
+				'href'                => 'key=import',
+				'class'               => 'header_csv_import',
+				'attributes'          => 'onclick="Backend.getScrollOffset();"'
+			),
+			'export' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['export'],
+				'href'                => 'act=export',
+				'class'               => 'header_csv_export',
+				'attributes'          => 'onclick="Backend.getScrollOffset();"'
+			),
+			'exportxls' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['exportxls'],
+				'href'                => 'act=exportxls',
+				'class'               => 'header_xls_export',
+				'attributes'          => 'onclick="Backend.getScrollOffset();"'
+			),
 			'all' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
@@ -103,10 +124,10 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_formdata']['form'],
 			'inputType'               => 'select',
-			'exclude'                 => false,
-			'search'                  => true,
-			'filter'                  => true,
-			'sorting'                 => true,
+			'exclude'                 => true,
+			'search'                  => false,
+			'filter'                  => false,
+			'sorting'                 => false,
 			'options_callback'        => array('tl_formdata', 'getFormsSelect'),
 			'eval'                    => array('chosen' => true, 'tl_class'=> 'w50')
 		),
@@ -229,6 +250,8 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	(
 		'baseFields'                 => array('id','sorting','tstamp','form','ip','date','fd_member','fd_user','fd_member_group','fd_user_group','published','alias','be_notes','confirmationSent','confirmationDate'),
 		'detailFields'               => array('NAME','WERT'),
+		'formFilterKey'              => 'form',
+		'formFilterValue'            => 'Mein Formular'
 	)
 );
 
@@ -255,7 +278,7 @@ $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['ff_id'] = 2;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['f_id'] = 2;
 
 /**
- * Class tl_fd_
+ * Class tl_fd_myForm
  *
  * Provide miscellaneous methods that are used by the data configuration array.
  *
@@ -267,8 +290,8 @@ $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['f_id'] = 2;
  * erweitert fuer contao 4
  * PBD verhinderung der doppeldefinition der class bei delete eines Eintrags aus der Tabelle
  */
-if (!class_exists('tl_fd_feedback', false)) {
-class tl_fd_feedback extends \Backend
+if (!class_exists('tl_fd_myForm', false)) {
+class tl_fd_myForm extends \Backend
 {
 
 	/**

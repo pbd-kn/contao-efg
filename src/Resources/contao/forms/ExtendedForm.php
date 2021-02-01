@@ -119,7 +119,7 @@ class ExtendedForm extends \Form
 		{
 			$arrEditRecord = $this->objEditRecord->row();
 			$this->blnEditform = true;
-			$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+			$this->import('Formdata');
 		}
 
 		// Check if the form is a multipage form

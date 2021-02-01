@@ -191,7 +191,7 @@ class ModuleFormdataListing extends \Module
 		}
 
 		$this->import('FrontendUser', 'Member');
-		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+		$this->import('Formdata');
 
 		$this->arrOwnerFields = array('fd_member', 'fd_user','fd_member_group', 'fd_user_group');
 

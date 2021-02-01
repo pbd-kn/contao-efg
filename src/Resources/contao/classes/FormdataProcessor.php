@@ -62,7 +62,7 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 		$arrFormFields = array();
 
 		$this->import('FrontendUser', 'Member');
-		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+		$this->import('Formdata');
 
 		$this->strFdDcaKey = 'fd_' . (!empty($arrForm['alias']) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title'])) );
 		$this->Formdata->FdDcaKey = $this->strFdDcaKey;
@@ -738,7 +738,7 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 				$blnSkipEmptyFields = true;
 			}
 
-			$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+			$this->import('Formdata');
 
 			$arrFormFields = $this->Formdata->getFormfieldsAsArray(intval($arrSubmitted['_formId_']));
 

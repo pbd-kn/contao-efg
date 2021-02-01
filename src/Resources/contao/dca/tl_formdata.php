@@ -404,7 +404,7 @@ class tl_formdata extends \Backend
 		{
 			$strFormTitle = $dc->strFormFilterValue;
 		}
-		$this->import('PBDKN\Efgco4\Resources\contao\classes\Formdata');
+		$this->import('Formdata');
 		return $this->Formdata->generateAlias($varValue, $strFormTitle, $dc->id);
 	}
 

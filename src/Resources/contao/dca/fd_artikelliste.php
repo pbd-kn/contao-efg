@@ -12,7 +12,7 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2020-12-25 09:19:27 by saving form "Artikelliste"
+// last created on 2021-02-01 14:39:15 by saving form "Artikelliste"
 
 
 
@@ -24,7 +24,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'FormdataPBD',
+		'dataContainer'               => 'Formdata',
 		'ctable'                      => array('tl_formdata_details'),
 		'closed'                      => false,
 		'notEditable'                 => false,
@@ -45,20 +45,10 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		),
 		'label' => array
 		(
-			'fields'                  => array('date', 'form', 'alias', 'be_notes' , 'Artikel', 'Preis1', 'Preis2', 'Preis3', 'Preis4', 'Preis5', 'Preis6', 'Kategorie', 'Subkategorie', 'Beschreibung'),
+			'fields'                  => array('date', 'form', 'alias', 'be_notes' ),
 			'format'                  => '<div class="fd_wrap">
 	<div class="fd_head">%s<span>[%s]</span><span>%s</span></div>
 		<div class="fd_notes">%s</div>
-	<div class="fd_row field_Artikel"><div class="fd_label">Artikel: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis1"><div class="fd_label">Stückpreis: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis2"><div class="fd_label">Paarpreis: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis3"><div class="fd_label">Stückpreis2.3: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis4"><div class="fd_label">Paarpreis2.3: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis5"><div class="fd_label">StückpreisEK: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Preis6"><div class="fd_label">PaarpreisEK: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Kategorie"><div class="fd_label">Kategorie: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Subkategorie"><div class="fd_label">Subkategorie: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_Beschreibung"><div class="fd_label">Beschreibung: </div><div class="fd_value">%s </div></div>
 		</div>',
 			/*
 			'label_callback'          => array('tl_fd_artikelliste','getRowLabel')
@@ -122,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => 'form,alias,date,ip,published,sorting;{confirmation_legend},confirmationSent,confirmationDate;{fdNotes_legend:hide},be_notes;{fdOwner_legend:hide},fd_member,fd_user,fd_member_group,fd_user_group;{fdDetails_legend},Artikel,Preis1,Preis2,Preis3,Preis4,Preis5,Preis6,Kategorie,Subkategorie,Beschreibung'
+		'default'                     => 'form,alias,date,ip,published,sorting;{confirmation_legend},confirmationSent,confirmationDate;{fdNotes_legend:hide},be_notes;{fdOwner_legend:hide},fd_member,fd_user,fd_member_group,fd_user_group;{fdDetails_legend},'
 	),
 
 	// Base fields in table tl_formdata
@@ -257,121 +247,13 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	'tl_formdata' => array
 	(
 		'baseFields'                 => array('id','sorting','tstamp','form','ip','date','fd_member','fd_user','fd_member_group','fd_user_group','published','alias','be_notes','confirmationSent','confirmationDate'),
-		'detailFields'               => array('Artikel','Preis1','Preis2','Preis3','Preis4','Preis5','Preis6','Kategorie','Subkategorie','Beschreibung'),
+		'detailFields'               => array(),
 		'formFilterKey'              => 'form',
 		'formFilterValue'            => 'Artikelliste'
 	)
 );
 
 // Detail fields in table tl_formdata_details
-// 'Artikel'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['label'] = array('Artikel', '[Artikel] Artikel');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['eval']['mandatory'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['ff_id'] = 15;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['f_id'] = 4;
-// 'Preis1'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['label'] = array('Stückpreis', '[Preis1] Stückpreis');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['ff_id'] = 16;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['f_id'] = 4;
-// 'Preis2'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['label'] = array('Paarpreis', '[Preis2] Paarpreis');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['ff_id'] = 17;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['f_id'] = 4;
-// 'Preis3'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['label'] = array('Stückpreis2.3', '[Preis3] Stückpreis2.3');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['ff_id'] = 21;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['f_id'] = 4;
-// 'Preis4'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['label'] = array('Paarpreis2.3', '[Preis4] Paarpreis2.3');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['ff_id'] = 22;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['f_id'] = 4;
-// 'Preis5'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['label'] = array('StückpreisEK', '[Preis5] StückpreisEK');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['ff_id'] = 69;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['f_id'] = 4;
-// 'Preis6'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['label'] = array('PaarpreisEK', '[Preis6] PaarpreisEK');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['eval']['rgxp'] = 'extnd';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['ff_id'] = 70;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['f_id'] = 4;
-// 'Kategorie'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['label'] = array('Kategorie', '[Kategorie] Kategorie');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['ff_id'] = 18;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['f_id'] = 4;
-// 'Subkategorie'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['label'] = array('Subkategorie', '[Subkategorie] Subkategorie');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['eval']['rgxp'] = 'alnum';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['ff_id'] = 19;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['f_id'] = 4;
-// 'Beschreibung'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['label'] = array('Beschreibung', '[Beschreibung] Beschreibung');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['ff_id'] = 20;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['f_id'] = 4;
 
 /**
  * Class tl_fd_artikelliste
@@ -416,76 +298,6 @@ class tl_fd_artikelliste extends \Backend
 		$strRowLabel .= '<div class="fd_head">' . date($GLOBALS['TL_CONFIG']['datimFormat'], $arrRow['date']) . '<span>[' . $arrRow['form'] . ']</span><span>' . $arrRow['alias'] . '</span></div>';
 		$strRowLabel .= '<div class="fd_notes">' . $arrRow['be_notes'] . '</div>';
 		$strRowLabel .= '<div class="mark_links">';
-		if (strlen($arrRow['Artikel']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Artikel">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Artikel']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Artikel'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis1']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis1">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis1']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis1'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis2']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis2">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis2']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis2'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis3']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis3">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis3']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis3'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis4']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis4">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis4']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis4'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis5']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis5">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis5']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis5'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Preis6']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Preis6">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Preis6']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Preis6'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Kategorie']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Kategorie">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Kategorie']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Kategorie'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Subkategorie']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Subkategorie">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Subkategorie']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Subkategorie'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
-		if (strlen($arrRow['Beschreibung']))
-		{
-			$strRowLabel .= '<div class="fd_row field_Beschreibung">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['Beschreibung']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['Beschreibung'] . ' </div>';
-			$strRowLabel .= '</div>';
-		}
 		$strRowLabel .= '</div></div>';
 
 		return $strRowLabel;

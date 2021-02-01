@@ -26,7 +26,7 @@ namespace PBDKN\Efgco4\Resources\contao\classes;
  * @author     Thomas Kuhn <mail@th-kuhn.de>
  * @package    Efg
  */
-class Formdata extends \Frontend
+class Formdata extends \Contao\Frontend
 {
 	/**
 	 * Items in tl_form, all forms marked to store data in tl_formdata
@@ -69,7 +69,7 @@ class Formdata extends \Frontend
 	{
 
 		parent::__construct();
-$this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR');
+$this->log("PBD Formdata construct ", __METHOD__, 'ERROR');
 		// Types of form fields with storable data
 		$this->arrFFstorable = array
 		(
@@ -108,6 +108,7 @@ $this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR
 				$this->arrMapTL_FFL[$strTL_FFL] = $strBE_FFL;
 			}
 		}
+$this->log("PBD FormdataBackend vor  getStoringForms", __METHOD__, 'ERROR');
 
 		$this->getStoringForms();
 		$this->arrBaseFields = array_filter(array_diff(\Database::getInstance()->getFieldNames('tl_formdata'), array('PRIMARY')));
@@ -182,6 +183,8 @@ $this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR
 	 */
 	public function generateAlias($varValue=null, $strFormTitle=null, $intRecId=null)
 	{
+$this->log("PBD Formdata generateAlias input varValue=$varValue, strFormTitle=$strFormTitle, intRecId=$intRecId ", __METHOD__, TL_GENERAL);
+
 		$autoAlias = false;
 		$strAliasField = '';
 
@@ -422,9 +425,10 @@ $this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR
 	 */
 	public function getStoringForms()
 	{
-
+$this->log("PBD Formdata getStoringForms ", __METHOD__, 'ERROR');
 		if (!$this->arrStoringForms)
 		{
+$this->log("PBD Formdata getStoringForms erzeugen", __METHOD__, 'ERROR');
 			// Get all forms marked to store data
 			$objForms = \Database::getInstance()->prepare("SELECT id,title,alias,formID,useFormValues,useFieldNames FROM tl_form WHERE storeFormdata=?")
 				->execute("1");
@@ -434,6 +438,7 @@ $this->log("PBD formdata efgco4 construct palettes default ", __METHOD__, 'ERROR
 				$strFormKey = (!empty($objForms->alias)) ? $objForms->alias : str_replace('-', '_', standardize($objForms->title));
 				$this->arrStoringForms[$strFormKey] = $objForms->row();
 				$this->arrFormsDcaKey[$strFormKey] = $objForms->title;
+$this->log("PBD Formdata getStoringForms erzeugt title[$strFormKey]" . $objForms->title , __METHOD__, 'ERROR');
 			}
 		}
 	}
@@ -3044,4 +3049,4 @@ $this->log("PBD Formdata reloadEfgImportSource nach generate Widget " ,  __METHO
 		}
 	}
 }
-class_alias(Formdata::class, 'Formdata');
+
