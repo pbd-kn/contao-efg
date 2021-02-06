@@ -12,12 +12,12 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2021-02-01 14:01:22 by saving form "Mein Formular"
+// last created on 2021-02-06 17:11:54 by saving form "MyForm"
 
 
 
 /**
- * Table tl_formdata defined by form "Mein Formular"
+ * Table tl_formdata defined by form "MyForm"
  */
 $GLOBALS['TL_DCA']['tl_formdata'] = array
 (
@@ -49,11 +49,11 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			'format'                  => '<div class="fd_wrap">
 	<div class="fd_head">%s<span>[%s]</span><span>%s</span></div>
 		<div class="fd_notes">%s</div>
-	<div class="fd_row field_NAME"><div class="fd_label">name: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_WERT"><div class="fd_label">WERT: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_NAME"><div class="fd_label">Name: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_WERT"><div class="fd_label">Wert: </div><div class="fd_value">%s </div></div>
 		</div>',
 			/*
-			'label_callback'          => array('tl_fd_myForm','getRowLabel')
+			'label_callback'          => array('tl_fd_MYFORM','getRowLabel')
 			*/
 		),
 		'global_operations' => array
@@ -251,34 +251,34 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		'baseFields'                 => array('id','sorting','tstamp','form','ip','date','fd_member','fd_user','fd_member_group','fd_user_group','published','alias','be_notes','confirmationSent','confirmationDate'),
 		'detailFields'               => array('NAME','WERT'),
 		'formFilterKey'              => 'form',
-		'formFilterValue'            => 'Mein Formular'
+		'formFilterValue'            => 'MyForm'
 	)
 );
 
 // Detail fields in table tl_formdata_details
 // 'NAME'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['label'] = array('name', '[NAME] name');
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['label'] = array('Name', '[NAME] Name');
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['inputType'] = 'text';
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['formfieldType'] = 'text';
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['exclude'] = false;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['search'] = true;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['sorting'] = true;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['ff_id'] = 1;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['f_id'] = 2;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['ff_id'] = 4;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['NAME']['f_id'] = 7;
 // 'WERT'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['label'] = array('WERT', '[WERT] WERT');
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['label'] = array('Wert', '[WERT] Wert');
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['inputType'] = 'text';
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['formfieldType'] = 'text';
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['exclude'] = false;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['search'] = true;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['sorting'] = true;
 $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['ff_id'] = 2;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['f_id'] = 2;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['ff_id'] = 5;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['f_id'] = 7;
 
 /**
- * Class tl_fd_myForm
+ * Class tl_fd_MYFORM
  *
  * Provide miscellaneous methods that are used by the data configuration array.
  *
@@ -290,8 +290,8 @@ $GLOBALS['TL_DCA']['tl_formdata']['fields']['WERT']['f_id'] = 2;
  * erweitert fuer contao 4
  * PBD verhinderung der doppeldefinition der class bei delete eines Eintrags aus der Tabelle
  */
-if (!class_exists('tl_fd_myForm', false)) {
-class tl_fd_myForm extends \Backend
+if (!class_exists('tl_fd_MYFORM', false)) {
+class tl_fd_MYFORM extends \Backend
 {
 
 	/**

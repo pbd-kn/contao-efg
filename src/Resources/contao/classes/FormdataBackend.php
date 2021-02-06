@@ -207,16 +207,15 @@ $this->log("PBD FormdataBackend updateConfig remove cached File " . $cachepath .
 	$tplConfig->arrStoringForms = $arrStoringForms;
 $comma_separated = implode(",", $arrStoringForms);
 $this->log("PBD FormdataBackend updateConfig arrStoringForms $comma_separated", __METHOD__, TL_GENERAL);
-	$objConfig = new \File('vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/dca/tl_fd_config.php');
-//	$objConfig = new \File('vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/config/config.php');
+	$objConfig = new \File('vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/config/config.php');
 
 	$objConfig->write($tplConfig->parse());   // PBD schreibt den Inhalt  des templates in config.php???
 	$objConfig->close();
 
-$this->log("PBD efg_co4 rewrite vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/dca/tl_fd_config.php", __METHOD__, TL_GENERAL);    // PBD
+$this->log("PBD efg_co4 rewrite vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/config/config.php", __METHOD__, TL_GENERAL);    // PBD
 
-	if (empty($arrStoringForms)) {
-		return;
+	if (empty($arrStoringForms)) {  
+		return; // keine Formulare vorhanden deren Daten gespeichert werden sollen
 	}
 
 	// languages/modules.php
@@ -244,6 +243,7 @@ $this->log("PBD FormdataBackend updateConfig remove cached Language File " . $ca
 		if (array_key_exists($strModLang, $arrLanguages))
 		{
 			$strFile = sprintf('%s/system/modules/%s/languages/%s/%s.php', TL_ROOT, 'efg_co4', $strModLang, 'tl_efg_modules');
+$this->log("PBD FormdataBackend languageFile " . $strFile, __METHOD__, TL_GENERAL);
 			if (file_exists($strFile))
 			{
 				include($strFile);

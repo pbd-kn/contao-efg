@@ -295,7 +295,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['mail'],
 				'href'                => 'act=mail',
-				'icon'                => 'system/modules/efg_co4/assets/mail.gif'
+				'icon'                => 'PBDKN/Efgco4/Resources/contao/assets/mail.gif'
 			)
 <?php endif; ?>
 		)

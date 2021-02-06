@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-PBDKN\Efgco4\Resources\contao\modules
+namespace PBDKN\Efgco4\Resources\contao\modules;
 /**
  * Class ModuleFormdataListing
  *

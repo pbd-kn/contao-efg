@@ -12,7 +12,7 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2021-02-01 14:39:15 by saving form "Artikelliste"
+// last created on 2021-02-02 16:58:00 by saving form "Artikelliste"
 
 
 
