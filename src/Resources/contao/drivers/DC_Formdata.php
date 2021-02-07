@@ -199,7 +199,7 @@ class DC_Formdata extends \Contao\DataContainer implements \listable, \editable
 	 */
 	public function __construct($strTable, $arrModule=array())
 	{
-$this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, TL_ERROR);
+$this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, TL_GENERAL);
 
 		parent::__construct();
 
@@ -4761,6 +4761,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		}
 
 		$arrForm = $objForm->row();
+$this->log("PBD DC_Formdata e) bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
 		$arrFormFields = $this->Formdata->getFormfieldsAsArray($arrForm['id']);
 
 		if (empty($arrForm['confirmationMailSubject']) || (empty($arrForm['confirmationMailText']) && empty($arrForm['confirmationMailTemplate'])))
@@ -5184,6 +5185,7 @@ $this->log('PBD DC_Formdata importFile import_source ' . \Input::post('import_so
 
 				if ($objForm !== null)
 				{
+$this->log("PBD DC_Formdata e) bearbeite FORM id:  " . $objForm->id, __METHOD__, TL_GENERAL);
 					$arrFormFields = $this->Formdata->getFormfieldsAsArray($objForm->id);
 				}
 

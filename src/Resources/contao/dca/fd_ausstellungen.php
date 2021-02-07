@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['edit'],
 				'href'                => 'act=edit',
-				'button_callback'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'callbackEditButton'),
+				'button_callback'     => array('FormdataBackend', 'callbackEditButton'),
 				'icon'                => 'edit.gif'
 			),
 			'delete' => array

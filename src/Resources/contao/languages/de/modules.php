@@ -13,7 +13,7 @@
 
 
 // This file is created when saving a form in form generator
-// last created on 2020-12-25 09:19:27
+// last created on 2021-02-07 16:24:19
 
 
 /**
@@ -22,13 +22,10 @@
 $GLOBALS['TL_LANG']['MOD']['formdata'] = 'Formular-Daten';
 $GLOBALS['TL_LANG']['MOD']['efg_co4'] = 'Formular-Daten';
 $GLOBALS['TL_LANG']['MOD']['feedback'] = array('Feedback', 'Gespeicherte Daten aus Formularen.');
-$GLOBALS['TL_LANG']['MOD']['fd_artikelliste'] = array('Artikelliste', 'Gespeicherte Daten aus Formular "Artikelliste".');
-$GLOBALS['TL_LANG']['MOD']['fd_galerieliste'] = array('Galerieliste', 'Gespeicherte Daten aus Formular "Galerieliste".');
-$GLOBALS['TL_LANG']['MOD']['fd_ausstellungen'] = array('Ausstellungen', 'Gespeicherte Daten aus Formular "Ausstellungen".');
-$GLOBALS['TL_LANG']['MOD']['fd_presse'] = array('Presse', 'Gespeicherte Daten aus Formular "Presse".');
-$GLOBALS['TL_LANG']['MOD']['fd_popup-artikel'] = array('popup-artikel', 'Gespeicherte Daten aus Formular "popup-artikel".');
+$GLOBALS['TL_LANG']['MOD']['fd_MYFORM'] = array('MyForm', 'Gespeicherte Daten aus Formular "MyForm".');
 
 /**
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['formdatalisting'] = array('Auflistung Formular-Daten', 'Verwenden Sie dieses Modul dazu, die Daten einer beliebigen Formular-Daten-Tabelle im Frontend aufzulisten.');
+

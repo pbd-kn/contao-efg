@@ -12,7 +12,7 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2021-02-06 17:11:54 by saving form "MyForm"
+// last created on 2021-02-07 16:24:19 by saving form "MyForm"
 
 
 
@@ -93,7 +93,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['edit'],
 				'href'                => 'act=edit',
-				'button_callback'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'callbackEditButton'),
+				'button_callback'     => array('FormdataBackend', 'callbackEditButton'),
 				'icon'                => 'edit.gif'
 			),
 			'delete' => array

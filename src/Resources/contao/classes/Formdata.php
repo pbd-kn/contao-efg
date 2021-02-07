@@ -108,8 +108,6 @@ $this->log("PBD Formdata construct ", __METHOD__, 'ERROR');
 				$this->arrMapTL_FFL[$strTL_FFL] = $strBE_FFL;
 			}
 		}
-$this->log("PBD FormdataBackend vor  getStoringForms", __METHOD__, 'ERROR');
-
 		$this->getStoringForms();
 		$this->arrBaseFields = array_filter(array_diff(\Database::getInstance()->getFieldNames('tl_formdata'), array('PRIMARY')));
 	}
@@ -425,10 +423,8 @@ $this->log("PBD Formdata generateAlias input varValue=$varValue, strFormTitle=$s
 	 */
 	public function getStoringForms()
 	{
-$this->log("PBD Formdata getStoringForms ", __METHOD__, 'ERROR');
 		if (!$this->arrStoringForms)
 		{
-$this->log("PBD Formdata getStoringForms erzeugen", __METHOD__, 'ERROR');
 			// Get all forms marked to store data
 			$objForms = \Database::getInstance()->prepare("SELECT id,title,alias,formID,useFormValues,useFieldNames FROM tl_form WHERE storeFormdata=?")
 				->execute("1");
@@ -549,6 +545,8 @@ $this->log("PBD Formdata getStoringForms erzeugt title[$strFormKey]" . $objForms
 	 */
 	public function getFormfieldsAsArray($intId=0)
 	{
+$this->log("PBD Formdata getFormfieldsAsArray formId $intId"  , __METHOD__, TL_GENERAL);
+
 		$varReturn = array();
 
 		if ($intId > 0)
@@ -559,6 +557,7 @@ $this->log("PBD Formdata getStoringForms erzeugt title[$strFormKey]" . $objForms
 			while ($objFormFields->next())
 			{
 				$varKey = (!empty($objFormFields->name) && !in_array($objFormFields->name, array_keys($varReturn))) ? $objFormFields->name : $objFormFields->id;
+$this->log("PBD Formdata getFormfieldsAsArray varKey $varKey"  , __METHOD__, TL_GENERAL);
 				$arrField = $objFormFields->row();
 
 				// Set type of frontend widget

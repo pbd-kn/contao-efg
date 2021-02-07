@@ -114,6 +114,7 @@ $this->log("PBD FormdataBackend arrform select SELECT * FROM tl_form WHERE id=" 
 	 */
 	public function callbackEditButton($row, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
 	{
+$this->log("PBD FormdataBackend callbackEditButton title $title", __METHOD__, TL_GENERAL);
 		$return = '';
 
 		$strDcaKey = array_search($row['form'], $this->Formdata->arrFormsDcaKey);
@@ -219,7 +220,7 @@ $this->log("PBD efg_co4 rewrite vendor/pbd-kn/contao-efg-bundle/src/Resources/co
 	}
 
 	// languages/modules.php
-    $arrModLangs = scan(TL_ROOT . '/system/modules/efg_co4/languages');
+    $arrModLangs = scan(TL_ROOT . '/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/languages');
 	$arrLanguages = $this->getLanguages();
 $cachepathlang = "/var/cache/$env/contao/languages/";
 	foreach ($arrModLangs as $strModLang)
@@ -242,7 +243,7 @@ $this->log("PBD FormdataBackend updateConfig remove cached Language File " . $ca
 		// Create language files
 		if (array_key_exists($strModLang, $arrLanguages))
 		{
-			$strFile = sprintf('%s/system/modules/%s/languages/%s/%s.php', TL_ROOT, 'efg_co4', $strModLang, 'tl_efg_modules');
+			$strFile = sprintf('%s/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/languages/%s/%s.php', TL_ROOT,  $strModLang, 'tl_efg_modules');
 $this->log("PBD FormdataBackend languageFile " . $strFile, __METHOD__, TL_GENERAL);
 			if (file_exists($strFile))
 			{
@@ -255,15 +256,13 @@ $this->log("PBD FormdataBackend include " . $strFile, __METHOD__, TL_GENERAL);
 		  $objMod = new \File('vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/languages/'.$strModLang.'/modules.php');
 		  $objMod->write($tplMod->parse());
 		  $objMod->close();
-$this->log("PBD FormdataBackend neu erzeugt " . 'system/modules/efg_co4/languages/'.$strModLang.'/modules.php', __METHOD__, TL_GENERAL);
+$this->log("PBD FormdataBackend neu erzeugt " . 'vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/languages/'.$strModLang.'/modules.php', __METHOD__, TL_GENERAL);
 	   }
     }
-$this->log("PBD FormdataBackend vor // dca/fd_FORMKEY.php ", __METHOD__, TL_GENERAL);
 
 	// dca/fd_FORMKEY.php
 	if (is_array($arrForms) && !empty($arrForms))
 	{
-$this->log("PBD FormdataBackend vor // dca/fd_FORMKEY.php ", __METHOD__, TL_GENERAL);
 		foreach ($arrForms as $arrForm)
 		{
 			if (!empty($arrForm))
@@ -279,7 +278,7 @@ $this->log("PBD FormdataBackend vor // dca/fd_FORMKEY.php ", __METHOD__, TL_GENE
 				$arrPalettes = array();
 				$strCurrentPalette = '';
 				$strPreviousPalette = '';
-$this->log("PBD FormdataBackend bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
+$this->log("PBD FormdataBackend a) bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
 				// Get all form fields of this form
 				$arrFormFields = $this->Formdata->getFormFieldsAsArray($arrForm['id']);
 
@@ -381,7 +380,7 @@ $this->log("PBD FormdataBackend bearbeite FORM id:  " . $arrForm['id'] . " title
 					$arrSelectors = array_unique($arrSelectors);
 				}
 				$strFormKey = (!empty($arrForm['alias'])) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title']));
-$this->log("PBD FormdataBackend 363 felder vor newTemplate bearbeitet: $strFormKey ", __METHOD__, TL_GENERAL);
+$this->log("PBD FormdataBackend felder vor newTemplate bearbeitet: $strFormKey ", __METHOD__, TL_GENERAL);
 				$tplDca = $this->newTemplate('efg_internal_dca_formdata');
 				$tplDca->strFormKey = $strFormKey;
 				$tplDca->arrForm = $arrForm;
@@ -413,17 +412,22 @@ $this->log("efg_co4 dca rewrite " . 'vendor/pbd-kn/contao-efg-bundle/src/Resourc
 		foreach ($arrStoringForms as $strFormKey => $arrForm)
 		{
 			// Get all form fields of this form
+$this->log("PBD FormdataBackend b) bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
+
 			$arrFormFields = $this->Formdata->getFormFieldsAsArray($arrForm['id']);
 			if (!empty($arrFormFields))
 			{
+$this->log("PBD FormdataBackend b) arrFormFields da FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
 				foreach ($arrFormFields as $strFieldKey => $arrField)
 				{
+$this->log("PBD FormdataBackend b) arrFormFields da $strFieldKey type " . $arrField['formfieldType'], __METHOD__, TL_GENERAL);
 					// Ignore not storable fields and some special fields like checkbox CC, fields of type password ...
 					if (!in_array($arrField['formfieldType'], $this->arrFFstorable)
 						|| ($arrField['formfieldType'] == 'checkbox' && $strFieldKey == 'cc')
 						|| ($arrField['formfieldType'] == 'condition' && $arrField['conditionType'] == 'stop')
 						|| ($arrField['formfieldType'] == 'cm_alternative' && in_array($arrField['cm_alternativeType'], array('cm_else', 'cm_stop'))))
 					{
+$this->log("PBD FormdataBackend b) arrFormFields da $strFieldKey type ignored" . $arrField['formfieldType'], __METHOD__, TL_GENERAL);
 						continue;
 					}
 					$arrAllFields[$strFieldKey] = $arrField;
@@ -433,7 +437,6 @@ $this->log("efg_co4 dca rewrite " . 'vendor/pbd-kn/contao-efg-bundle/src/Resourc
 		}
 
 		$strFormKey = 'feedback';
-$this->log("PBD FormdataBackend 424 felder vor newTemplate bearbeitet: $strFormKey ", __METHOD__, TL_GENERAL);
 		$tplDca = $this->newTemplate('efg_internal_dca_formdata');
 		$tplDca->arrForm = array('key' => 'feedback', 'title'=> $this->arrForm['title']);
 		$tplDca->arrStoringForms = $arrStoringForms;
@@ -471,9 +474,12 @@ $this->log("PBD FormdataBackend updateConfig Bitte Cache neu aufbauen", __METHOD
 	 */
 	private function newTemplate($strTemplate)
 	{
+        $deb=\Config::get('debugMode');        // im Debugmodus wird der Text TEMPLATE START und TEMPLATE ENDE eingefügt
+                                               // das führt bei den internen templates zu Fehlern
+        \Config::set('debugMode',false); 
 		$objTemplate = new \BackendTemplate($strTemplate);
 		$objTemplate->folder = 'efg_co4';
-
+        \Config::set('debugMode',$deb); 
 		return $objTemplate;
 	}
 

@@ -30,3 +30,4 @@ $GLOBALS['TL_LANG']['MOD']['feedback'] = array('<?php echo str_replace("'", "\'"
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['formdatalisting'] = array('<?php echo str_replace("'", "\'", \StringUtil::decodeEntities($GLOBALS['TL_LANG']['FMD']['formdatalisting'][0])); ?>', '<?php echo str_replace("'", "\'", \StringUtil::decodeEntities($GLOBALS['TL_LANG']['FMD']['formdatalisting'][1])); ?>');
+

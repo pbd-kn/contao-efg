@@ -60,12 +60,12 @@ $GLOBALS['BE_MOD']['formdata']['feedback'] = array
 
 // following are used for the form dependent modules
 <?php foreach($this->arrStoringForms as $strKey=>$arrVals): ?>
-$GLOBALS['BE_MOD']['formdata']['fd_<?php echo $strKey; ?>'] = array
+$GLOBALS['BE_MOD']['formdata']['<?php echo $strKey; ?>'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
-	'import'     => array('PBDKN\Efgco4\Resources\contao\classes\FormdataBackend', 'importCsv'),
-	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
-	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
+	'import'     => array('FormdataBackend', 'importCsv'),
+	'icon'       => 'PBDKN/Efgco4/Resources/contao/assets/formdata.gif',
+	'stylesheet' => 'PBDKN/Efgco4/Resources/contao/assets/style.css'
 );
 <?php endforeach; ?>
 <?php endif; ?>

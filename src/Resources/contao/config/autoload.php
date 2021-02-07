@@ -12,6 +12,7 @@
 
 class_alias(PBDKN\Efgco4\Resources\contao\drivers\DC_Formdata::class, 'DC_Formdata');
 class_alias(PBDKN\Efgco4\Resources\contao\classes\Formdata::class, 'Formdata');
+class_alias(PBDKN\Efgco4\Resources\contao\classes\FormdataBackend::class, 'FormdataBackend');
 
 /**
  * Register the namespaces

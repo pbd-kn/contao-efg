@@ -137,6 +137,7 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 			$this->loadDataContainer($this->strFdDcaKey);
 			$this->loadDataContainer('tl_formdata_details');
 			$this->loadDataContainer('tl_files');
+$this->log("PBD FormdataProcessor c) bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
 
 			$arrFormFields = $this->Formdata->getFormfieldsAsArray($arrForm['id']);
 
@@ -739,6 +740,7 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 			}
 
 			$this->import('Formdata');
+$this->log("PBD FormdataProcessor d) bearbeite FORM id:  " . $arrForm['id'] . " title: " . $arrForm['title'], __METHOD__, TL_GENERAL);
 
 			$arrFormFields = $this->Formdata->getFormfieldsAsArray(intval($arrSubmitted['_formId_']));
 
