@@ -22,7 +22,7 @@
  */    
 namespace PBDKN\Efgco4\Resources\contao\classes;
    
-class EfgInsertTag extends Frontend
+class EfgInsertTag extends \Contao\Frontend
 {
     /**
      * InsertTags für Efg Modul
@@ -35,7 +35,7 @@ class EfgInsertTag extends Frontend
     public function Efg_InsertTags( $strTag )
     {
         $debug = false;
-        $this->Date = new Date(date('Ymd'),'Ymd');
+        $this->Date = new \Date(date('Ymd'),'Ymd');
         $heute = $this->Date->dayBegin;     // Tagesbeginn HEUTE
         $resstr = "";
         $arrTag = explode( '::', $strTag );

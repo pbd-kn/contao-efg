@@ -199,7 +199,7 @@ class DC_Formdata extends \Contao\DataContainer implements \listable, \editable
 	 */
 	public function __construct($strTable, $arrModule=array())
 	{
-$this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata.php constructor strTable $strTable id " . \Input::get('id') , __METHOD__, TL_GENERAL);
 
 		parent::__construct();
 
@@ -348,6 +348,8 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 			{
 				if (array_key_exists(\Input::get('do'), $GLOBALS['BE_MOD']['formdata']))
 				{
+$this->log("PBD DC_Formdata.php constructor strTable $strTable do " . \Input::get('do') , __METHOD__, TL_GENERAL);
+
 					$this->strFormKey = \Input::get('do');
 					$this->strFormFilterKey = 'form';
 					$this->strFormFilterValue = $this->Formdata->arrStoringForms[substr($this->strFormKey, 3)]['title'];
@@ -782,6 +784,8 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 	 */
 	public function create($set=array())
 	{
+$this->log("PBD DC_Formdata.php create strTable " . $this->strTable . " setarray '" . implode(",",$set) . "'", __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata.php create strFormKey '" . $this->strFormKey . "'", __METHOD__, TL_GENERAL);
 
 		if (!empty($this->strFormKey))
 		{
@@ -799,6 +803,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		// Get all default values for the new entry
 		foreach ($GLOBALS['TL_DCA'][$this->strTable]['fields'] as $k => $v)
 		{
+//$this->log("PBD DC_Formdata.php create field[$k]$v " . $this->strFormKey , __METHOD__, TL_GENERAL);
 			if (array_key_exists('default', $v))
 			{
 				if (!in_array($k, $this->arrBaseFields))
@@ -824,15 +829,22 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		if (!$GLOBALS['TL_DCA'][$this->strTable]['config']['closed'])
 		{
 			$this->set['tstamp'] = 0;
+//$this->log("PBD DC_Formdata.php create insert into  " . $this->strTable , __METHOD__, TL_GENERAL);
+//foreach ($this->set as $k=>$v) {
+//$this->log("PBD DC_Formdata.php create insert into tl_formdata this->set[$k]$v " , __METHOD__, TL_GENERAL);
+//}
+
 
 			$objInsertStmt = \Database::getInstance()->prepare("INSERT INTO " . $this->strTable . " %s")
 				->set($this->set)
 				->execute();
+//$this->log("PBD DC_Formdata.php create changed rows in " . $this->strTable . " " . $objInsertStmt->affectedRows , __METHOD__, TL_GENERAL);
 
 			if ($objInsertStmt->affectedRows)
 			{
-				$s2e = $GLOBALS['TL_DCA'][$this->strTable]['config']['switchToEdit'] ? '&s2e=1' : '';
+				$s2e = $GLOBALS['TL_DCA'][$this->strTable]['config']['switchToEdit'] ? '&s2e=1' : '';  // switch to edit
 				$insertID = $objInsertStmt->insertId;
+$this->log("PBD DC_Formdata.php create in " . $this->strTable . " insertID $insertID " . $objInsertStmt->insertId , __METHOD__, TL_GENERAL);
 
 				foreach ($this->arrDetailFields as $strDetailField)
 				{
@@ -860,15 +872,23 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 					}
 
 					$arrDetailSet['value'] = $strVal;
+//$this->log("PBD DC_Formdata.php create insert into tl_formdata_details  " . implode(",",$arrDetailSet) , __METHOD__, TL_GENERAL);
+//foreach ($arrDetailSet as $k=>$v) {
+//$this->log("PBD DC_Formdata.php create insert into tl_formdata_details arrDetailSet[$k]$v " , __METHOD__, TL_GENERAL);
+//}
 
 					$objInsertStmt = \Database::getInstance()->prepare("INSERT INTO tl_formdata_details %s")
 						->set($arrDetailSet)
 						->execute();
+//$this->log("PBD DC_Formdata.php create changed rows tl_formdata_details" . $objInsertStmt->affectedRows , __METHOD__, TL_GENERAL);
+				$insertIDdetail = $objInsertStmt->insertId;
+$this->log("PBD DC_Formdata.php create tl_formdata_details insertIDdetail " . $objInsertStmt->insertId , __METHOD__, TL_GENERAL);
 				}
 
 				// Save new record in the session
 				$new_records = $this->Session->get('new_records');
 				$new_records[$this->strTable][] = $insertID;
+$this->log("PBD DC_Formdata.php create in session insertID $insertID " . $this->strTable . " len " . count($new_records[$this->strTable]), __METHOD__, TL_GENERAL);
 				$this->Session->set('new_records', $new_records);
 
 				// Call the oncreate_callback
@@ -878,6 +898,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 					{
 						if (is_array($callback))
 						{
+$this->log("PBD DC_Formdata.php create call callback" . $callback[0] , __METHOD__, TL_GENERAL);
 							$this->import($callback[0]);
 							$this->{$callback[0]}->{$callback[1]}($this->strTable, $insertID, $this->set, $this);    //Änderung PBD
 						}
@@ -891,8 +912,12 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 				// Add a log entry
 				$this->log('A new entry in table "'.$this->strTable.'" has been created (ID: '.$insertID.')', __METHOD__, TL_GENERAL);
 				\Controller::redirect($this->switchToEdit($insertID).$s2e);
-			}
+			} else {
+$this->log("PBD DC_Formdata.php create keine Aenderungen rows " , __METHOD__, TL_GENERAL);
+
+            }
 		}
+$this->log("PBD DC_Formdata.php create vor redirect " , __METHOD__, TL_GENERAL);
 
 		\Controller::redirect($this->getReferer());
 	}
@@ -1192,7 +1217,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 	 */
 	public function edit($intID=null, $ajaxId=null)
 	{
-//$this->log("PBD DC_Formdata edit ", __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata edit intID $intID this->intId " . $this->intId, __METHOD__, TL_GENERAL);
 
 		$table_alias = ($this->strTable == 'tl_formdata' ? ' f' : '');
 
@@ -1219,15 +1244,17 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		{
 			$sqlQuery .= $sqlWhere;
 		}
+$this->log("PBD DC_Formdata edit sqlQuery $sqlQuery", __METHOD__, TL_GENERAL);
 
 		$objRow = \Database::getInstance()->prepare($sqlQuery)
 			->limit(1)
 			->execute($this->intId);
+$this->log("PBD DC_Formdata edit nach sql", __METHOD__, TL_GENERAL);
 
 		// Redirect if there is no record with the given ID
 		if ($objRow->numRows < 1)
 		{
-			$this->log('Could not load record "'.$this->strTable.'.id='.$this->intId.'"', __METHOD__, TL_ERROR);
+			$this->log('a Could not load record "'.$this->strTable.'.id='.$this->intId.'"', __METHOD__, TL_ERROR);
 			\Controller::redirect('contao/main.php?act=error');
 		}
 
@@ -1923,7 +1950,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 	 */
 	public function editAll($intId=null, $ajaxId=null)
 	{
-//$this->log("PBD DC_Formdata editAll ", __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata editAll ", __METHOD__, TL_GENERAL);
 
 		if ($GLOBALS['TL_DCA'][$this->strTable]['config']['notEditable'])
 		{
@@ -3035,6 +3062,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		$ctable = $GLOBALS['TL_DCA'][$this->strTable]['config']['ctable'];
 
 		$new_records = $this->Session->get('new_records');
+$this->log("PBD DC_Formdata.php reviseTable in session new_records ", __METHOD__, TL_GENERAL);
 
 		// HOOK: add custom logic
 		if (isset($GLOBALS['TL_HOOKS']['reviseTable']) && is_array($GLOBALS['TL_HOOKS']['reviseTable']))
@@ -3059,7 +3087,11 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 				}
 			}
 		}
+$this->log("PBD DC_Formdata.php reviseTable in session new_records this->strTable " . $this->strTable . " len " . count($new_records[$this->strTable]), __METHOD__, TL_GENERAL);
 
+//foreach ($new_records[$this->strTable] as $k=>$v) {
+//$this->log("PBD DC_Formdata.php reviseTable in session new_records this->strTable[$k]$v ", __METHOD__, TL_GENERAL);
+//}
 		// Delete all new but incomplete records (tstamp=0)
 		if (!empty($new_records[$this->strTable]) && is_array($new_records[$this->strTable]))
 		{
@@ -3133,6 +3165,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 	 */
 	protected function listView()
 	{
+$this->log("PBD DC_Formdata.php listView strTable " . $this->strTable , __METHOD__, TL_GENERAL);
 
 		$return = '';
 		$table = ($GLOBALS['TL_DCA'][$this->strTable]['list']['sorting']['mode'] == 6) ? $this->ptable : $this->strTable;
@@ -3145,6 +3178,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 			$orderBy = $this->orderBy;
 			$firstOrderBy = $this->firstOrderBy;
 		}
+//$this->log("PBD DC_Formdata.php listView table:'" . \Input::get('table') . "' id: '" . \Input::get('id') . "'" , __METHOD__, TL_GENERAL);
 
 		if (\Input::get('table') && $GLOBALS['TL_DCA'][$this->strTable]['config']['ptable'] && \Database::getInstance()->fieldExists('pid', $this->strTable))
 		{
@@ -3205,21 +3239,27 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 			$arrLimit = explode(',', $this->limit);
 			$objRowStmt->limit($arrLimit[1], $arrLimit[0]);
 		}
+$this->log("PBD DC_Formdata.php listView query $query values '" . implode(", ",$this->values) . "'" , __METHOD__, TL_GENERAL);
 
 		$objRow = $objRowStmt->execute($this->values);
 		$this->bid = ($return != '') ? $this->bid : 'tl_buttons';
+//$this->log("PBD DC_Formdata.php listView closed " . " global_operations " . $GLOBALS['TL_DCA'][$this->strTable]['list']['global_operations'], __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata.php listView Display !closed '" . !($GLOBALS['TL_DCA'][$this->strTable]['config']['closed']) . "'"  , __METHOD__, TL_GENERAL);
 
 		// Display buttons
 		if (!$GLOBALS['TL_DCA'][$this->strTable]['config']['closed'] || !empty($GLOBALS['TL_DCA'][$this->strTable]['list']['global_operations']))
 		{
+$this->log("PBD DC_Formdata.php listView Display buttons act '" . \Input::get('act') . "'"  , __METHOD__, TL_GENERAL);
+//$this->log("PBD DC_Formdata.php listView Display buttons sort mode '" . $GLOBALS['TL_DCA'][$this->strTable]['list']['sorting']['mode'] . "'"  , __METHOD__, TL_GENERAL);
 			$return .= '
 
-<div id="'.$this->bid.'">'.((\Input::get('act') == 'select' || $this->ptable) ? '
+<div id="' . $this->bid . '">action: "' . \Input::get('act'). '"' .((\Input::get('act') == 'select' || $this->ptable) ? '
 <a href="'.$this->getReferer(true, $this->ptable).'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']).'" accesskey="b" onclick="Backend.getScrollOffset()">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a> ' : (isset($GLOBALS['TL_DCA'][$this->strTable]['config']['backlink']) ? '
 <a href="contao/main.php?'.$GLOBALS['TL_DCA'][$this->strTable]['config']['backlink'].'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']).'" accesskey="b" onclick="Backend.getScrollOffset()">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a> ' : '')) . ((\Input::get('act') != 'select') ? '
-'.(!$GLOBALS['TL_DCA'][$this->strTable]['config']['closed'] ? '<a href="'.(($this->ptable != '') ? \Backend::addToUrl('act=create' . (($GLOBALS['TL_DCA'][$this->strTable]['list']['sorting']['mode'] < 4) ? '&amp;mode=2' : '') . '&amp;pid=' . $this->intId) : \Backend::addToUrl('act=create')).'" class="header_new" title="'.specialchars($GLOBALS['TL_LANG'][$this->strTable]['new'][1]).'" accesskey="n" onclick="Backend.getScrollOffset()">'.$GLOBALS['TL_LANG'][$this->strTable]['new'][0].'</a> ' : '') . $this->generateGlobalButtons() : '') . '
+'.(!$GLOBALS['TL_DCA'][$this->strTable]['config']['closed'] ? '<a href="'.(($this->ptable != '') ? \Backend::addToUrl('act=create' . (($GLOBALS['TL_DCA'][$this->strTable]['list']['sorting']['mode'] < 4) ? '&amp;mode=2' : '') . '&amp;pid=' . $this->intId) : \Backend::addToUrl('act=create')).'" class="header_new" title="'.specialchars($GLOBALS['TL_LANG'][$this->strTable]['new'][1]).'" accesskey="n" onclick="Backend.getScrollOffset()">'.$GLOBALS['TL_LANG'][$this->strTable]['new'][0].'</a> ' : 'PBDleer1') . $this->generateGlobalButtons() : 'PBDconfigtrue') . '
 </div>' . \Message::generate(true);
 		}
+$this->log("PBD DC_Formdata.php listView Display buttons numRows" . $objRow->numRows, __METHOD__, TL_GENERAL);
 
 		// Return "no records found" message
 		if ($objRow->numRows < 1)
@@ -3535,6 +3575,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 </form>';
 			}
 		}
+$this->log("PBD DC_Formdata.php listView return $return", __METHOD__, TL_GENERAL);
 
 		return $return;
 	}
@@ -4720,7 +4761,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 		// Redirect if there is no record with the given ID
 		if ($objRow->numRows < 1)
 		{
-			$this->log('Could not load record "'.$this->strTable.'.id='.$this->intId.'"', __METHOD__, TL_ERROR);
+			$this->log('b Could not load record "'.$this->strTable.'.id='.$this->intId.'"', __METHOD__, TL_ERROR);
 			\Controller::redirect('contao/main.php?act=error');
 		}
 
@@ -4756,7 +4797,7 @@ $this->log("PBD DC_Formdata.php constructor strTable $strTable " , __METHOD__, T
 
 		if ($objForm == null)
 		{
-			$this->log('Could not load record "tl_form.id='.$intFormId.'" / "tl_form.title='.$arrSubmitted['form'].'"', __METHOD__, TL_ERROR);
+			$this->log('c Could not load record "tl_form.id='.$intFormId.'" / "tl_form.title='.$arrSubmitted['form'].'"', __METHOD__, TL_ERROR);
 			\Controller::redirect('contao/main.php?act=error');
 		}
 

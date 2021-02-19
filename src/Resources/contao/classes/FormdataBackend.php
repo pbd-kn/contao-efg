@@ -99,12 +99,12 @@ $this->log("PBD FormdataBackend generate input do " . \Input::get('do') , __METH
 	{
 
 		$this->intFormId = $dc->id;
-$this->log("PBD FormdataBackend arrform select SELECT * FROM tl_form WHERE id=" . $this->intFormId, __METHOD__, TL_GENERAL);
 		$arrForm = \Database::getInstance()->prepare("SELECT * FROM tl_form WHERE id=?")
 			->execute($this->intFormId)
 			->fetchAssoc();
 
 		$strFormKey = (!empty($arrForm['alias'])) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title']));
+$this->log("PBD FormdataBackend createFormdataDca strFormKey $strFormKey formid " . $this->intFormId, __METHOD__, TL_GENERAL);
 		$this->updateConfig(array($strFormKey => $arrForm));
 	}
 
@@ -142,8 +142,7 @@ $this->log("PBD FormdataBackend callbackEditButton title $title", __METHOD__, TL
 $this->log("PBD FormdataBackend updateConfig ", __METHOD__, TL_GENERAL);
 		$arrStoringForms = $this->Formdata->arrStoringForms;  
 foreach ($arrStoringForms as $k=>$v) {
-$comma_separated = implode(",", $v);
-$this->log("PBD FormdataBackend updateConfig arrStoringForms[$k] $comma_separated", __METHOD__, TL_GENERAL);
+$this->log("PBD a FormdataBackend updateConfig arrStoringForms[$k] " . implode(",", $v), __METHOD__, TL_GENERAL);
 }
         
 
@@ -153,8 +152,7 @@ $this->log("PBD FormdataBackend updateConfig arrForms  null", __METHOD__, TL_GEN
 			$arrForms = $arrStoringForms;
 		} else {
 foreach ($arrForms as $k=>$v) {
-$comma_separated = implode(",", $v);
-$this->log("PBD FormdataBackend updateConfig arrForms[$k] $comma_separated", __METHOD__, TL_GENERAL);
+$this->log("PBD FormdataBackend updateConfig arrForms[$k] " . implode(", ", $v), __METHOD__, TL_GENERAL);
 }        
         }
     //APP_ENV environment variable can contain either prod or dev
@@ -206,11 +204,15 @@ $this->log("PBD FormdataBackend updateConfig remove cached File " . $cachepath .
 	// config/config.php
 	$tplConfig = $this->newTemplate('efg_internal_config');
 	$tplConfig->arrStoringForms = $arrStoringForms;
-$comma_separated = implode(",", $arrStoringForms);
-$this->log("PBD FormdataBackend updateConfig arrStoringForms $comma_separated", __METHOD__, TL_GENERAL);
+foreach ($arrStoringForms as $k=>$v) {
+  foreach ($v as $k1=>$v1) {
+$this->log("PBD b FormdataBackend updateConfig arrStoringForms[$k][$k1]$v1 ", __METHOD__, TL_GENERAL); 
+  }  
+}
+
 	$objConfig = new \File('vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/config/config.php');
 
-	$objConfig->write($tplConfig->parse());   // PBD schreibt den Inhalt  des templates in config.php???
+	$objConfig->write($tplConfig->parse());   // PBD config.php neu erzeugen muss cache neu erzeugt werden??
 	$objConfig->close();
 
 $this->log("PBD efg_co4 rewrite vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/config/config.php", __METHOD__, TL_GENERAL);    // PBD
@@ -223,6 +225,7 @@ $this->log("PBD efg_co4 rewrite vendor/pbd-kn/contao-efg-bundle/src/Resources/co
     $arrModLangs = scan(TL_ROOT . '/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/languages');
 	$arrLanguages = $this->getLanguages();
 $cachepathlang = "/var/cache/$env/contao/languages/";
+      $cachepath =  $cp . "dca/";
 	foreach ($arrModLangs as $strModLang)
 	{
 
@@ -475,7 +478,7 @@ $this->log("PBD FormdataBackend updateConfig Bitte Cache neu aufbauen", __METHOD
 	private function newTemplate($strTemplate)
 	{
         $deb=\Config::get('debugMode');        // im Debugmodus wird der Text TEMPLATE START und TEMPLATE ENDE eingefügt
-                                               // das führt bei den internen templates zu Fehlern
+                                               // das führt bei den internen php templates zu Fehlern
         \Config::set('debugMode',false); 
 		$objTemplate = new \BackendTemplate($strTemplate);
 		$objTemplate->folder = 'efg_co4';

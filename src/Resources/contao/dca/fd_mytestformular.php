@@ -12,12 +12,12 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2020-01-12 15:39:25 by saving form "popup-artikel"
+// last created on 2021-02-19 12:59:53 by saving form "MyTESTFORMULAR"
 
 
 
 /**
- * Table tl_formdata defined by form "popup-artikel"
+ * Table tl_formdata defined by form "MyTESTFORMULAR"
  */
 $GLOBALS['TL_DCA']['tl_formdata'] = array
 (
@@ -45,15 +45,15 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		),
 		'label' => array
 		(
-			'fields'                  => array('date', 'form', 'alias', 'be_notes' , 'kategorieSubkategorie', 'artikelname'),
+			'fields'                  => array('date', 'form', 'alias', 'be_notes' , 'MYNAME', 'MYWERT'),
 			'format'                  => '<div class="fd_wrap">
 	<div class="fd_head">%s<span>[%s]</span><span>%s</span></div>
 		<div class="fd_notes">%s</div>
-	<div class="fd_row field_kategorieSubkategorie"><div class="fd_label">kategorieSubkategorie: </div><div class="fd_value">%s </div></div>
-	<div class="fd_row field_artikelname"><div class="fd_label">artikelname: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_MYNAME"><div class="fd_label">MyName: </div><div class="fd_value">%s </div></div>
+	<div class="fd_row field_MYWERT"><div class="fd_label">MyWert: </div><div class="fd_value">%s </div></div>
 		</div>',
 			/*
-			'label_callback'          => array('tl_fd_popup_artikel','getRowLabel')
+			'label_callback'          => array('tl_fd_mytestformular','getRowLabel')
 			*/
 		),
 		'global_operations' => array
@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => 'form,alias,date,ip,published,sorting;{confirmation_legend},confirmationSent,confirmationDate;{fdNotes_legend:hide},be_notes;{fdOwner_legend:hide},fd_member,fd_user,fd_member_group,fd_user_group;{fdDetails_legend},kategorieSubkategorie,artikelname'
+		'default'                     => 'form,alias,date,ip,published,sorting;{confirmation_legend},confirmationSent,confirmationDate;{fdNotes_legend:hide},be_notes;{fdOwner_legend:hide},fd_member,fd_user,fd_member_group,fd_user_group;{fdDetails_legend},MYNAME,MYWERT'
 	),
 
 	// Base fields in table tl_formdata
@@ -249,43 +249,36 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 	'tl_formdata' => array
 	(
 		'baseFields'                 => array('id','sorting','tstamp','form','ip','date','fd_member','fd_user','fd_member_group','fd_user_group','published','alias','be_notes','confirmationSent','confirmationDate'),
-		'detailFields'               => array('kategorieSubkategorie','artikelname'),
+		'detailFields'               => array('MYNAME','MYWERT'),
 		'formFilterKey'              => 'form',
-		'formFilterValue'            => 'popup-artikel'
+		'formFilterValue'            => 'MyTESTFORMULAR'
 	)
 );
 
 // Detail fields in table tl_formdata_details
-// 'kategorieSubkategorie'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['label'] = array('kategorieSubkategorie', '[kategorieSubkategorie] kategorieSubkategorie');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['inputType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['formfieldType'] = 'text';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['eval']['mandatory'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['ff_id'] = 67;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['f_id'] = 9;
-// 'artikelname'
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['label'] = array('artikelname', '[artikelname] artikelname');
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['inputType'] = 'efgLookupSelect';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['formfieldType'] = 'efgLookupSelect';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['exclude'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['search'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['sorting'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['filter'] = false;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['efgLookupOptions']['lookup_field'] = 'tl_article.alias';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['efgLookupOptions']['lookup_sort'] = '';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['efgLookupOptions']['lookup_val_field'] = 'tl_article.alias';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['efgLookupOptions']['lookup_where'] = 'alias like \'%popup%\'';
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['eval']['mandatory'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['eval']['chosen'] = true;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['ff_id'] = 68;
-$GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['f_id'] = 9;
+// 'MYNAME'
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['label'] = array('MyName', '[MYNAME] MyName');
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['inputType'] = 'text';
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['formfieldType'] = 'text';
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['exclude'] = false;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['search'] = true;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['sorting'] = true;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['filter'] = false;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['ff_id'] = 7;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['f_id'] = 9;
+// 'MYWERT'
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['label'] = array('MyWert', '[MYWERT] MyWert');
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['inputType'] = 'text';
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['formfieldType'] = 'text';
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['exclude'] = false;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['search'] = true;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['sorting'] = true;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['filter'] = false;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['ff_id'] = 8;
+$GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['f_id'] = 9;
 
 /**
- * Class tl_fd_popup_artikel
+ * Class tl_fd_mytestformular
  *
  * Provide miscellaneous methods that are used by the data configuration array.
  *
@@ -293,7 +286,12 @@ $GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['f_id'] = 9;
  * @author     Thomas Kuhn <mail@th-kuhn.de>
  * @package    Efg
  */
-class tl_fd_popup_artikel extends \Backend
+/**
+ * erweitert fuer contao 4
+ * PBD verhinderung der doppeldefinition der class bei delete eines Eintrags aus der Tabelle
+ */
+if (!class_exists('tl_fd_mytestformular', false)) {
+class tl_fd_mytestformular extends \Backend
 {
 
 	/**
@@ -322,18 +320,18 @@ class tl_fd_popup_artikel extends \Backend
 		$strRowLabel .= '<div class="fd_head">' . date($GLOBALS['TL_CONFIG']['datimFormat'], $arrRow['date']) . '<span>[' . $arrRow['form'] . ']</span><span>' . $arrRow['alias'] . '</span></div>';
 		$strRowLabel .= '<div class="fd_notes">' . $arrRow['be_notes'] . '</div>';
 		$strRowLabel .= '<div class="mark_links">';
-		if (strlen($arrRow['kategorieSubkategorie']))
+		if (strlen($arrRow['MYNAME']))
 		{
-			$strRowLabel .= '<div class="fd_row field_kategorieSubkategorie">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['kategorieSubkategorie']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['kategorieSubkategorie'] . ' </div>';
+			$strRowLabel .= '<div class="fd_row field_MYNAME">';
+			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['MYNAME']['label'][0] . ': </div>';
+			$strRowLabel .= '<div class="fd_value">' . $arrRow['MYNAME'] . ' </div>';
 			$strRowLabel .= '</div>';
 		}
-		if (strlen($arrRow['artikelname']))
+		if (strlen($arrRow['MYWERT']))
 		{
-			$strRowLabel .= '<div class="fd_row field_artikelname">';
-			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['artikelname']['label'][0] . ': </div>';
-			$strRowLabel .= '<div class="fd_value">' . $arrRow['artikelname'] . ' </div>';
+			$strRowLabel .= '<div class="fd_row field_MYWERT">';
+			$strRowLabel .= '<div class="fd_label">' . $GLOBALS['TL_DCA']['tl_formdata']['fields']['MYWERT']['label'][0] . ': </div>';
+			$strRowLabel .= '<div class="fd_value">' . $arrRow['MYWERT'] . ' </div>';
 			$strRowLabel .= '</div>';
 		}
 		$strRowLabel .= '</div></div>';
@@ -343,3 +341,5 @@ class tl_fd_popup_artikel extends \Backend
 	}
 
 }
+} 
+

@@ -12,7 +12,7 @@
  */
 
 // This file is created when saving a form in form generator
-// last created on 2021-02-07 16:24:19
+// last created on 2021-02-19 12:59:53
 /*
  * you can set the swiftmail transport set in efg_internal_config.html
  * example define('SENDMAILCOMMAND', ini_get ('sendmail_path') . ' -t')
@@ -54,12 +54,12 @@ $GLOBALS['BE_MOD']['formdata']['feedback'] = array
 );
 
 // following are used for the form dependent modules
-$GLOBALS['BE_MOD']['formdata']['MYFORM'] = array
+$GLOBALS['BE_MOD']['formdata']['fd_mytestformular'] = array
 (
 	'tables'     => array('tl_formdata', 'tl_formdata_details'),
 	'import'     => array('FormdataBackend', 'importCsv'),
-	'icon'       => 'PBDKN/Efgco4/Resources/contao/assets/formdata.gif',
-	'stylesheet' => 'PBDKN/Efgco4/Resources/contao/assets/style.css'
+	'icon'       => 'system/modules/efg_co4/assets/formdata.gif',
+	'stylesheet' => 'system/modules/efg_co4/assets/style.css'
 );
 
 
@@ -81,9 +81,9 @@ array_insert($GLOBALS['FE_MOD']['application'], count($GLOBALS['FE_MOD']['applic
  * -------------------------------------------------------------------------
  */
 
-$GLOBALS['TL_HOOKS']['processFormData'][] = array('PBDKN\Efgco4\Resources\classes\FormdataProcessor', 'processSubmittedData');
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('PBDKN\Efgco4\Resources\classes\FormdataProcessor', 'processConfirmationContent');
-$GLOBALS['TL_HOOKS']['listComments'][] = array('PBDKN\Efgco4\Resources\classes\FormdataComments', 'listComments');
-$GLOBALS['TL_HOOKS']['getSearchablePages'][] = array('PBDKN\Efgco4\Resources\classes\Formdata', 'getSearchablePages');
-$GLOBALS['TL_HOOKS']['executePostActions'][] = array('PBDKN\Efgco4\Resources\classes\Formdata', 'executePostActions');
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('PBDKN\Efgco4\Resources\EfgInsertTag', 'Efg_InsertTags');
+$GLOBALS['TL_HOOKS']['processFormData'][] = array('PBDKN\Efgco4\Resources\contao\classes\FormdataProcessor', 'processSubmittedData');
+$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('PBDKN\Efgco4\Resources\contao\classes\FormdataProcessor', 'processConfirmationContent');
+$GLOBALS['TL_HOOKS']['listComments'][] = array('PBDKN\Efgco4\Resources\classes\contao\FormdataComments', 'listComments');
+$GLOBALS['TL_HOOKS']['getSearchablePages'][] = array('PBDKN\Efgco4\Resources\contao\classes\Formdata', 'getSearchablePages');
+$GLOBALS['TL_HOOKS']['executePostActions'][] = array('PBDKN\Efgco4\Resources\contao\classes\Formdata', 'executePostActions');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('PBDKN\Efgco4\Resources\contao\classes\EfgInsertTag', 'Efg_InsertTags');

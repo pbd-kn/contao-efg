@@ -28,7 +28,7 @@ namespace PBDKN\Efgco4\Resources\contao\classes;
  * @author     Thomas Kuhn <mail@th-kuhn.de>
  * @package    Efg
  */
-class FormdataProcessor extends \Frontend
+class FormdataProcessor extends \Contao\Frontend
 {
 
 	protected $strFdDcaKey = '';

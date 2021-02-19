@@ -1,8 +1,8 @@
 /* Contao Efg style sheet */
 .header_csv_import, .header_csv_export, .header_xls_export{padding:2px 0 3px 20px;margin-left:15px;background-position:left center;background-repeat:no-repeat;}
-.header_csv_import{background-image:url("bundles/contaoefgco4/css/importCSV.gif");}
-.header_csv_export{background-image:url("exportCSV.gif");}
-.header_xls_export{background-image:url("exportEXCEL.gif");}
+.header_csv_import{background-image:url("../icons/importCSV.gif");}
+.header_csv_export{background-image:url("../icons/exportCSV.gif");}
+.header_xls_export{background-image:url("../icons/exportEXCEL.gif");}
 .cte_type { margin:0px 0px 6px 0px; }
 .tl_file_list { vertical-align:top; padding:9px 0px !important; }
 .mark_links a { text-decoration:underline; }

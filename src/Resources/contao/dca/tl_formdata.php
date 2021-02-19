@@ -56,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 		'label' => array
 		(
 			'fields'                  => array('form', 'date', 'ip', 'alias'),
-			'label_callback'          => array('tl_formdata','getRowLabel')
+			'label_callback'          => array('tl_formdataPBD','getRowLabel')
 		),
 		'global_operations' => array
 		(
@@ -74,20 +74,20 @@ $GLOBALS['TL_DCA']['tl_formdata'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['edit'],
 				'href'                => 'act=edit',
-				'icon'                => 'edit.gif'
+				'icon'                => 'PBDKN/Efgco4/Resources/contao/assets/edit.gif'
 			),
 			'delete' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['delete'],
 				'href'                => 'act=delete',
-				'icon'                => 'delete.gif',
+				'icon'                => 'PBDKN/Efgco4/Resources/contao/assets/delete.gif',
 				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
 			),
 			'show' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_formdata']['show'],
 				'href'                => 'act=show',
-				'icon'                => 'show.gif'
+				'icon'                => 'PBDKN/Efgco4/Resources/contao/assets/show.gif'
 			),
 			'mail' => array
 			(
@@ -270,8 +270,9 @@ class tl_formdata extends \Backend
 	 * @param object $dca DataContainer
 	 * @param string $varFormKey specific form if called from ModuleFormdataListing
 	 */
-	function loadDCA(\DataContainer $dca, $varFormKey = '')
+	function loadDCA(\DataContainer $dca, $varFormKey = '')                      
 	{
+$this->log("PBD tl_formdata loadDCA -> varFormKey $varFormKey", __METHOD__, 'ERROR');
 		$strModule = 'efg_co4';
 		$strName = 'feedback';
 		$strFileName = 'tl_formdata';
@@ -295,14 +296,16 @@ class tl_formdata extends \Backend
 		{
 			$strFileName = (\Input::get('do') == 'feedback' ? 'fd_feedback' : \Input::get('do'));
 		}
-
+$this->log("PBD tl_formdata loadDCA varFormKey '$varFormKey' strFileName '$strFileName'", __METHOD__, 'ERROR');
 		if ($varFormKey != '' && is_string($varFormKey))
 		{
 			if ($varFormKey != 'tl_formdata' )
 			{
 				if (array_key_exists($varFormKey, $GLOBALS['BE_MOD']['formdata']))
 				{
-					$strFile = sprintf('%s/system/modules/%s/dca/%s.php', TL_ROOT, $strModule, $strFileName);
+					//$strFile = sprintf('%s/system/modules/%s/dca/%s.php', TL_ROOT, $strModule, $strFileName);
+			        $strFile = sprintf('%s/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/dca/%s.php', TL_ROOT,  \Input::get('do'));
+$this->log("PBD tl_formdata loadDCA varformkey in FE strFile $strFile", __METHOD__, 'ERROR');
 
 					if (file_exists($strFile))
 					{
@@ -333,9 +336,16 @@ class tl_formdata extends \Backend
 		}
 		else
 		{
+$this->log("PBD tl_formdata ohne varformkey input do " . \Input::get('do'), __METHOD__, 'ERROR');
+
 			if (array_key_exists(\Input::get('do'), $GLOBALS['BE_MOD']['formdata']))
 			{
-				$strFile = sprintf('%s/system/modules/%s/dca/%s.php', TL_ROOT, $strModule, $strFileName);
+$this->log("PBD tl_formdata do exist in BE_MOD strFileName $strFileName input do=" . \Input::get('do'), __METHOD__, 'ERROR');
+			    $strFile = sprintf('%s/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/dca/%s.php', TL_ROOT, $strFileName);
+			    //$strFile = sprintf('%s/vendor/pbd-kn/contao-efg-bundle/src/Resources/contao/dca/%s.php', TL_ROOT,  \Input::get('do'));
+
+				//$strFile = sprintf('%s/system/modules/%s/dca/%s.php', TL_ROOT, $strModule, $strFileName);
+$this->log("PBD tl_formdata strFile $strFile ", __METHOD__, 'ERROR');
 
 				if (file_exists($strFile))
 				{
@@ -359,12 +369,14 @@ class tl_formdata extends \Backend
 						}
 					}
 
-				}
+				} else {
+$this->log("PBD tl_formdata strFile '$strFile' not exist'", __METHOD__, 'ERROR');
+                }
 			}
 		}
 
 		@include(TL_ROOT . '/system/config/dcaconfig.php');
-
+$this->log("PBD tl_formdata loadDCA <- ", __METHOD__, 'ERROR');
 	}
 
 
@@ -414,6 +426,7 @@ class tl_formdata extends \Backend
 	*/
 	public function getRowLabel($arrRow)
 	{
+$this->log("PBD tl_formdata getRowLabel -> ", __METHOD__, 'ERROR');
 		$strRet = '';
 
 		// Titles of all forms
@@ -439,9 +452,11 @@ class tl_formdata extends \Backend
 		// Details from table tl_formdata_details
 		$strSql = "SELECT ff_name,value FROM tl_formdata_details WHERE pid=? ORDER BY sorting ASC";
 		$objDetails = \Database::getInstance()->prepare($strSql)->execute($arrRow['id']);
+$this->log("PBD tl_formdata getRowLabel select $strSql id " . $arrRow['id'] , __METHOD__, 'ERROR');
 
 		while ($objDetails->next())
 		{
+$this->log("PBD tl_formdata getRowLabel add name " . $objDetails->ff_name . " Value: " . $objDetails->value, __METHOD__, 'ERROR');
 			$strRet .=  '<div class="fd_row"><div class="fd_label">' .$objDetails->ff_name . ':&nbsp;</div><div class="fd_value">' . $objDetails->value . '&nbsp;</div></div>';
 		}
 
@@ -575,3 +590,4 @@ class tl_formdata extends \Backend
 	}
 
 }
+
