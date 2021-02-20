@@ -8,7 +8,7 @@
  * @package ModuleEfg_InsertTag
  * @copyright  P.Broghammer 
  * @author     P.Broghammer 
- * @package    ModuleEfg_InsertTag 
+ * @package    Module Efg_InsertTag 
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 /*
