@@ -104,7 +104,7 @@ $this->log("PBD FormdataBackend generate input do " . \Input::get('do') , __METH
 			->fetchAssoc();
 
 		$strFormKey = (!empty($arrForm['alias'])) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title']));
-$this->log("PBD FormdataBackend createFormdataDca strFormKey $strFormKey formid " . $this->intFormId, __METHOD__, TL_GENERAL);
+$this->log("PBD FormdataBackend createFormdataDca strFormKey $strFormKey formid " . $this->intFormId . " alias " . $arrForm['alias'], __METHOD__, TL_GENERAL);
 		$this->updateConfig(array($strFormKey => $arrForm));
 	}
 

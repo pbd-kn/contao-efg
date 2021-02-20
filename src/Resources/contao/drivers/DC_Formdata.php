@@ -1837,7 +1837,6 @@ $this->log("PBD DC_Formdata edit nach sql", __METHOD__, TL_GENERAL);
 		// TODO: find a better solution to handle toggleSubpalette ...
 		$return .= $this->getSubpaletteJavascript();
 		$return .= $this->getFilepickerJavascript('reloadEfgFiletree');
-//$this->log("PBD DC_Formdata getFilepickerJavascript 1812 ", __METHOD__, TL_GENERAL);
 		// Begin the form (-> DO NOT CHANGE THIS ORDER -> this way the onsubmit attribute of the form can be changed by a field)
 		$return = $version . '
 <div id="tl_buttons">' . (\Input::get('nb') ? '&nbsp;' : '
@@ -1857,6 +1856,7 @@ $this->log("PBD DC_Formdata edit nach sql", __METHOD__, TL_GENERAL);
 		// Reload the page to prevent _POST variables from being sent twice
 		if (\Input::post('FORM_SUBMIT') == $this->strTable && !$this->noReload)
 		{
+$this->log("PBD DC_Formdata.php edit FORM_SUBMIT this->strTable " . $this->strTable, __METHOD__, TL_GENERAL);
 			$arrValues = $this->values;
 			array_unshift($arrValues, time());
 
@@ -1909,9 +1909,12 @@ $this->log("PBD DC_Formdata edit nach sql", __METHOD__, TL_GENERAL);
 
 			elseif (isset($_POST['saveNcreate']))
 			{
+
 				\Message::reset();
 				setcookie('BE_PAGE_OFFSET', 0, 0, '/');
-				$strUrl = \Environment::get('script') . '?do=' . \Input::get('do');
+				//$strUrl = \Environment::get('script') . '?do=' . \Input::get('do');
+				$strUrl = "contao" . '?do=' . \Input::get('do');    // PBD redirekt auf contao geht jetzt so !!
+//$this->log("PBD DC_Formdata.php edit saveNcreate $strUrl $strUrl script " . \Environment::get('script'), __METHOD__, TL_GENERAL);
 
 				if (isset($_GET['table']))
 				{
@@ -1919,7 +1922,8 @@ $this->log("PBD DC_Formdata edit nach sql", __METHOD__, TL_GENERAL);
 				}
 
 				$strUrl .= strlen($GLOBALS['TL_DCA'][$this->strTable]['config']['ptable']) ? '&amp;act=create&amp;mode=2&amp;pid=' . CURRENT_ID : '&amp;act=create';
-
+$this->log("PBD DC_Formdata.php edit controler redirekt strUrl $strUrl ", __METHOD__, TL_GENERAL);
+$this->log("PBD DC_Formdata.php edit controler redirekt referrer " . $this->getReferer(), __METHOD__, TL_GENERAL);
 				\Controller::redirect($strUrl . '&amp;rt=' . REQUEST_TOKEN);
 			}
 

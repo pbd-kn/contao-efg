@@ -52,6 +52,7 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 	 * @return void
 	 */
 	public function processSubmittedData($arrSubmitted, $arrForm=false, $arrFiles=false, $arrLabels=false) {
+$this->log("PBD FormdataProcessor co4 processSubmittedData", __METHOD__, TL_GENERAL);
 
 		// Form config
 		if (!$arrForm)
@@ -66,9 +67,11 @@ $this->log("PBD FormdataProcessor co4 construct nach Parent", __METHOD__, TL_GEN
 
 		$this->strFdDcaKey = 'fd_' . (!empty($arrForm['alias']) ? $arrForm['alias'] : str_replace('-', '_', standardize($arrForm['title'])) );
 		$this->Formdata->FdDcaKey = $this->strFdDcaKey;
+$this->log("PBD FormdataProcessor co4 this->Formdata->FdDcaKey " . $this->Formdata->FdDcaKey, __METHOD__, TL_GENERAL);
 
 		// Get params of related listing formdata
 		$intListingId = intval($_SESSION['EFP']['LISTING_MOD']['id']);
+$this->log("PBD FormdataProcessor co4 intListingId $intListingId ", __METHOD__, TL_GENERAL);
 		if ($intListingId > 0)
 		{
 			$objListing = \Database::getInstance()->prepare("SELECT * FROM tl_module WHERE id=?")

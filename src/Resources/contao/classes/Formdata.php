@@ -207,6 +207,7 @@ $this->log("PBD Formdata generateAlias input varValue=$varValue, strFormTitle=$s
 				$strAliasField = $objForm->efgAliasField;
 			}
 		}
+$this->log("PBD Formdata generateAlias strAliasField $strAliasField ", __METHOD__, TL_GENERAL);
 
 		if ($strAliasField == '')
 		{
@@ -252,6 +253,7 @@ $this->log("PBD Formdata generateAlias input varValue=$varValue, strFormTitle=$s
 
 		$objAlias = \Database::getInstance()->prepare("SELECT id FROM tl_formdata WHERE alias=? AND id != ?")
 			->execute($varValue, $intRecId);
+$this->log("PBD Formdata generateAlias check varValue $varValue intRecId $intRecId autoAlias $autoAlias " . $objAlias->numRows , __METHOD__, TL_GENERAL);
 
 		// Check whether the alias exists
 		if ($objAlias->numRows > 1 && !$autoAlias)
@@ -264,6 +266,7 @@ $this->log("PBD Formdata generateAlias input varValue=$varValue, strFormTitle=$s
 		{
 			$varValue .= (!empty($varValue) ? '.' : '') . $intRecId;
 		}
+$this->log("PBD Formdata generateAlias return $varValue" , __METHOD__, TL_GENERAL);
 
 		return $varValue;
 	}
@@ -2823,6 +2826,8 @@ $this->log("PBD Formdata executePostActions strAction $strAction ", __METHOD__, 
 						$this->strAjaxId = preg_replace('/.*_([0-9a-zA-Z]+)$/', '$1', \Input::post('id'));
 						if (in_array(\Input::post('field'), $this->arrBaseFields))
 						{
+$up= "UPDATE tl_formdata SET " . \Input::post('field') . "='" . (intval(\Input::post('state')) == 1 ? 1 : '') . "' WHERE id=" .$this->strAjaxId ;
+$this->log("PBD Formdata executePostActions generate Up1 $up  ", __METHOD__, TL_GENERAL);
 							\Database::getInstance()->prepare("UPDATE tl_formdata SET " . \Input::post('field') . "='" . (intval(\Input::post('state')) == 1 ? 1 : '') . "' WHERE id=?")->execute($this->strAjaxId);
 						}
 						else
@@ -2863,6 +2868,8 @@ $this->log("PBD Formdata executePostActions strAction $strAction ", __METHOD__, 
 					{
 						if (in_array(\Input::post('field'), $this->arrBaseFields))
 						{
+$up= "UPDATE tl_formdata SET " . \Input::post('field') . "='" . (intval(\Input::post('state')) == 1 ? 1 : '') . "' WHERE id=" .$dc->strAjaxId ;
+$this->log("PBD Formdata executePostActions generate Up2 $up  ", __METHOD__, TL_GENERAL);
 							\Database::getInstance()->prepare("UPDATE tl_formdata SET " . \Input::post('field') . "='" . (intval(\Input::post('state')) == 1 ? 1 : '') . "' WHERE id=?")->execute($dc->id);
 						}
 						else
