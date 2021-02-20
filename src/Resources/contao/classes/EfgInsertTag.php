@@ -12,7 +12,7 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 /*
- * fügt eine Wert aus einem Efg Formular ein. Die daten müssen in tl_form gespeichert werden
+ * fuegt eine Wert aus einem Efg Formular ein. Die daten müssen in tl_form gespeichert werden
  * Auswahlfeld ist das efgaliasfeld, das im Formulat angegeben ist 
  * Parameter
  * Liste: Aliasname des formulars (input)
